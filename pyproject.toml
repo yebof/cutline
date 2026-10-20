@@ -1,0 +1,36 @@
+[build-system]
+requires = ["setuptools>=69"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "cutline"
+version = "1.0.0"
+description = "Verifiable product pixels in AI-composited images: capture-bound codec-cell openings, an exact JPEG codec test and a consortium ledger"
+readme = "README.md"
+requires-python = ">=3.12,<3.13"
+license = "MIT"
+authors = [{ name = "Yebo Feng", email = "fengyebo@gmail.com" }]
+dependencies = [
+    "numpy==2.5.3",
+    "scipy==1.18.1",
+    "pillow==12.3.0",
+    "opencv-python-headless==5.0.0.93",
+    "jpeglib==1.0.2",
+    "onnxruntime==1.30.0",
+    "cryptography==50.0.1",
+    "asn1crypto==1.5.1",
+    "eth-keys==0.8.0",
+    "eth-hash[pycryptodome]==0.8.0",
+    "pycryptodome==3.23.0",
+    "rlp==5.0.0",
+    "trie==4.0.0",
+]
+
+[project.scripts]
+cutline = "cutline.cli:main"
+
+[tool.setuptools.packages.find]
+include = ["cutline*", "capture_emu*", "sidecar*"]
+
+[tool.setuptools.package-data]
+cutline = ["labels_v1.json", "jpeg/_warncount/*.c", "jpeg/_warncount/*.h"]

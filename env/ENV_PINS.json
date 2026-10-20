@@ -1,0 +1,17 @@
+{
+  "codecs": {
+    "jpeglib": {
+      "version": "1.0.2",
+      "builds": {
+        "mozjpeg403": {
+          "so": "cjpeglib_mozjpeg403.abi3.so",
+          "so_sha256": "9a42c3cf4b7f89a0621ae023a6137970aa983cf4d89c17f79656f6e0f8407e0a"
+        },
+        "turbo210": {
+          "so": "cjpeglib_turbo210.abi3.so",
+          "so_sha256": "5f76a0fb9038b7be9f77c9d5051fa49f2c0f2a4592c4222189fa347d0c4ad585"
+        }
+      }
+    }
+  }
+}

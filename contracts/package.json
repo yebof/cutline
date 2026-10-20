@@ -1,0 +1,21 @@
+{
+  "name": "cutline-contracts",
+  "version": "1.0.0",
+  "description": "CUTLINE v1 consortium-ledger contracts: capture anchors, device keys, claims, hop registry, label policy, and the on-chain block court.",
+  "author": "Yebo Feng <fengyebo@gmail.com>",
+  "license": "MIT",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": "22.22.2"
+  },
+  "scripts": {
+    "build": "hardhat build",
+    "deploy": "hardhat run scripts/deploy.js --network cutline"
+  },
+  "devDependencies": {
+    "@nomicfoundation/hardhat-ethers": "4.2.0",
+    "ethers": "6.17.0",
+    "hardhat": "3.18.0"
+  }
+}

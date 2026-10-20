@@ -1,0 +1,10 @@
+__pycache__/
+*.pyc
+*.egg-info/
+build/
+dist/
+.venv/
+models/
+cutline/jpeg/_warncount/build/
+contracts/node_modules/
+contracts/.build/

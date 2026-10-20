@@ -1,0 +1,1277 @@
+{
+ "version": "CUTLINE contracts v1 storage layout",
+ "build": "solc 0.8.34+commit.80d5c536, viaIR true, optimizer runs 200, evmVersion osaka",
+ "buildInfoInputSha256": "50b68d4b4dcb5f6195490b77449f6adb11c6eff711f17c38972207d0efe358ef",
+ "encoding": "solc storage layout: a mapping value lives at keccak256(abi.encode(key, slot)) (key left-padded to 32 bytes; bytes32 as is); a nested mapping applies the rule again with the inner slot; a dynamic array's element i starts at uint256(keccak256(abi.encode(slot))) + i\u00b7size; a field at (slotOffset, byteOffset, bytes) occupies bytes [32 \u2212 byteOffset \u2212 bytes, 32 \u2212 byteOffset) of its big-endian word (low-order packing)",
+ "readSet": [
+  {
+   "contract": "ClaimRegistry",
+   "variable": "claims",
+   "baseSlot": 8,
+   "type": "t_mapping(t_bytes32,t_struct(Claim)2219_storage)",
+   "keys": [
+    "claimId"
+   ],
+   "slotFormula": "keccak256(abi.encode(claimId, uint256(8))) + slotOffset",
+   "fields": [
+    {
+     "field": "claimant",
+     "slotOffset": 0,
+     "byteOffset": 0,
+     "type": "t_address",
+     "bytes": 20
+    },
+    {
+     "field": "height",
+     "slotOffset": 0,
+     "byteOffset": 20,
+     "type": "t_uint64",
+     "bytes": 8
+    },
+    {
+     "field": "status",
+     "slotOffset": 0,
+     "byteOffset": 28,
+     "type": "t_uint8",
+     "bytes": 1
+    },
+    {
+     "field": "tier",
+     "slotOffset": 0,
+     "byteOffset": 29,
+     "type": "t_uint8",
+     "bytes": 1
+    },
+    {
+     "field": "marketplace",
+     "slotOffset": 0,
+     "byteOffset": 30,
+     "type": "t_uint8",
+     "bytes": 1
+    },
+    {
+     "field": "kind",
+     "slotOffset": 0,
+     "byteOffset": 31,
+     "type": "t_uint8",
+     "bytes": 1
+    },
+    {
+     "field": "nf",
+     "slotOffset": 1,
+     "byteOffset": 0,
+     "type": "t_bytes32",
+     "bytes": 32
+    },
+    {
+     "field": "id",
+     "slotOffset": 2,
+     "byteOffset": 0,
+     "type": "t_uint32",
+     "bytes": 4
+    },
+    {
+     "field": "courtFailed",
+     "slotOffset": 2,
+     "byteOffset": 4,
+     "type": "t_bool",
+     "bytes": 1
+    },
+    {
+     "field": "quorumFailed",
+     "slotOffset": 2,
+     "byteOffset": 5,
+     "type": "t_bool",
+     "bytes": 1
+    },
+    {
+     "field": "cleared",
+     "slotOffset": 2,
+     "byteOffset": 6,
+     "type": "t_bool",
+     "bytes": 1
+    }
+   ],
+   "why": "the claim, its flags and its principal: principalKey = sha256(nf \u2016 u8 kind \u2016 u32 id) is recomputed from (nf, kind, id), not stored (WP-A deviation 1)",
+   "worked": {
+    "keys": {
+     "claimId": "0xe79bbb187a45aa71c9beddbfa509084b132635d23b088660d0d2a5d37af86f9e"
+    },
+    "slot": "0xfd2ee75ddb1877ba98d095e8cd02f5f473d08dd3b763f8ef04e928a1b45cabb3",
+    "slots": [
+     "0xfd2ee75ddb1877ba98d095e8cd02f5f473d08dd3b763f8ef04e928a1b45cabb3",
+     "0xfd2ee75ddb1877ba98d095e8cd02f5f473d08dd3b763f8ef04e928a1b45cabb4",
+     "0xfd2ee75ddb1877ba98d095e8cd02f5f473d08dd3b763f8ef04e928a1b45cabb5"
+    ]
+   }
+  },
+  {
+   "contract": "ClaimRegistry",
+   "variable": "captures",
+   "baseSlot": 7,
+   "type": "t_mapping(t_bytes32,t_struct(Capture)2195_storage)",
+   "keys": [
+    "nf"
+   ],
+   "slotFormula": "keccak256(abi.encode(nf, uint256(7))) + slotOffset",
+   "fields": [
+    {
+     "field": "owner",
+     "slotOffset": 0,
+     "byteOffset": 0,
+     "type": "t_address",
+     "bytes": 20
+    },
+    {
+     "field": "batchId",
+     "slotOffset": 0,
+     "byteOffset": 24,
+     "type": "t_uint32",
+     "bytes": 4
+    },
+    {
+     "field": "timeUnverified",
+     "slotOffset": 0,
+     "byteOffset": 28,
+     "type": "t_bool",
+     "bytes": 1
+    },
+    {
+     "field": "keyId",
+     "slotOffset": 1,
+     "byteOffset": 0,
+     "type": "t_bytes32",
+     "bytes": 32
+    },
+    {
+     "field": "epoch",
+     "slotOffset": 2,
+     "byteOffset": 0,
+     "type": "t_uint32",
+     "bytes": 4
+    }
+   ],
+   "why": "owner and epoch for principal(); the anchor batch; time-unverified; keyId for validAt",
+   "worked": {
+    "keys": {
+     "nf": "0x509825f7e987655260937658878c628bdeb8b47465f45c00d87f5c6c1b823b96"
+    },
+    "slot": "0x173a4dfb7a8bfd7edeff616fd82cbd5403e213de912a23f5fc8a92c95ed7be4d",
+    "slots": [
+     "0x173a4dfb7a8bfd7edeff616fd82cbd5403e213de912a23f5fc8a92c95ed7be4d",
+     "0x173a4dfb7a8bfd7edeff616fd82cbd5403e213de912a23f5fc8a92c95ed7be4e",
+     "0x173a4dfb7a8bfd7edeff616fd82cbd5403e213de912a23f5fc8a92c95ed7be4f"
+    ]
+   }
+  },
+  {
+   "contract": "ClaimRegistry",
+   "variable": "strikes",
+   "baseSlot": 9,
+   "type": "t_mapping(t_bytes32,t_struct(Strike)2225_storage)",
+   "keys": [
+    "principalKey"
+   ],
+   "slotFormula": "keccak256(abi.encode(principalKey, uint256(9)))",
+   "fields": [
+    {
+     "field": "courtStruck",
+     "slotOffset": 0,
+     "byteOffset": 0,
+     "type": "t_bool",
+     "bytes": 1
+    },
+    {
+     "field": "quorumStrikes",
+     "slotOffset": 0,
+     "byteOffset": 1,
+     "type": "t_uint32",
+     "bytes": 4
+    }
+   ],
+   "why": "struck(p) = courtStruck \u2228 quorumStrikes > 0",
+   "worked": {
+    "keys": {
+     "principalKey": "0x92f19b38a36f0263ed1a39b834523b41b11276c8c573cb2212a6f5a06738480d"
+    },
+    "slot": "0x76540b46f2678189347ea013a61df96a7e29168382a6fc0ed8994eb415c7c4c6"
+   }
+  },
+  {
+   "contract": "ClaimRegistry",
+   "variable": "exclusiveOf",
+   "baseSlot": 11,
+   "type": "t_mapping(t_bytes32,t_mapping(t_uint8,t_struct(Exclusive)2243_storage))",
+   "keys": [
+    "nf",
+    "marketplace (uint8)"
+   ],
+   "slotFormula": "keccak256(abi.encode(uint256(m), keccak256(abi.encode(nf, uint256(11)))))",
+   "fields": [
+    {
+     "field": "licensee",
+     "slotOffset": 0,
+     "byteOffset": 0,
+     "type": "t_address",
+     "bytes": 20
+    },
+    {
+     "field": "licId",
+     "slotOffset": 0,
+     "byteOffset": 20,
+     "type": "t_uint32",
+     "bytes": 4
+    },
+    {
+     "field": "expiry",
+     "slotOffset": 0,
+     "byteOffset": 24,
+     "type": "t_uint64",
+     "bytes": 8
+    }
+   ],
+   "why": "an active licence decides principal() first (\"licence lapsed\")",
+   "worked": {
+    "keys": {
+     "nf": "0x509825f7e987655260937658878c628bdeb8b47465f45c00d87f5c6c1b823b96",
+     "marketplace": 5
+    },
+    "inner": "0x3b78001ca472cd18fbbb04a0e8dc26a0ba7b43d1eaf1f2efaf2183620c028549",
+    "slot": "0x229b36f71eb5fc5c38c5239975fb4dbbf0085343de2d1edbb57c319fdaccaf7b"
+   }
+  },
+  {
+   "contract": "ClaimRegistry",
+   "variable": "delegations",
+   "baseSlot": 10,
+   "type": "t_mapping(t_bytes32,t_mapping(t_address,t_struct(Delegation)2235_storage))",
+   "keys": [
+    "nf",
+    "claimant (address)"
+   ],
+   "slotFormula": "keccak256(abi.encode(claimant, keccak256(abi.encode(nf, uint256(10)))))",
+   "fields": [
+    {
+     "field": "epoch",
+     "slotOffset": 0,
+     "byteOffset": 0,
+     "type": "t_uint32",
+     "bytes": 4
+    },
+    {
+     "field": "scope",
+     "slotOffset": 0,
+     "byteOffset": 4,
+     "type": "t_uint64",
+     "bytes": 8
+    },
+    {
+     "field": "expiry",
+     "slotOffset": 0,
+     "byteOffset": 12,
+     "type": "t_uint64",
+     "bytes": 8
+    },
+    {
+     "field": "revoked",
+     "slotOffset": 0,
+     "byteOffset": 20,
+     "type": "t_bool",
+     "bytes": 1
+    }
+   ],
+   "why": "\"delegation revoked or expired\" (read only if the claimant is neither the owner nor the licensee)",
+   "worked": {
+    "keys": {
+     "nf": "0x509825f7e987655260937658878c628bdeb8b47465f45c00d87f5c6c1b823b96",
+     "claimant": "0xCf7616E1A33CDcEa05527DB052Bab87045B505Ce"
+    },
+    "inner": "0x3c2208fa5dc73543eae760632794e149e331c3ab441477bcc1a7c5179dc899cb",
+    "slot": "0x24a76f0a05cfbc3382b769204b4027718495af6781dab5917587ca2cc520d46f"
+   }
+  },
+  {
+   "contract": "CaptureAnchor",
+   "variable": "_batches",
+   "baseSlot": 0,
+   "type": "t_array(t_struct(Batch)1867_storage)dyn_storage",
+   "keys": [
+    "batchId = captures[nf].batchId"
+   ],
+   "slotFormula": "uint256(keccak256(abi.encode(uint256(0)))) + 3\u00b7batchId + slotOffset (dynamic array of 3-slot structs)",
+   "fields": [
+    {
+     "field": "anchorHeight",
+     "slotOffset": 2,
+     "byteOffset": 8,
+     "type": "t_uint64",
+     "bytes": 8
+    }
+   ],
+   "why": "h_a for validAt (anchorHeight: slot offset 2, byte offset 8, uint64)",
+   "worked": {
+    "keys": {
+     "batchId": 0
+    },
+    "arrayData": "0x290decd9548b62a8d60345a988386fc84ba6bc95484008f6362f93160ef3e563",
+    "slot": "0x290decd9548b62a8d60345a988386fc84ba6bc95484008f6362f93160ef3e563",
+    "anchorHeightSlot": "0x290decd9548b62a8d60345a988386fc84ba6bc95484008f6362f93160ef3e565"
+   }
+  },
+  {
+   "contract": "DeviceRegistry",
+   "variable": "devices",
+   "baseSlot": 3,
+   "type": "t_mapping(t_bytes32,t_struct(Device)4660_storage)",
+   "keys": [
+    "keyId = captures[nf].keyId"
+   ],
+   "slotFormula": "keccak256(abi.encode(keyId, uint256(3))) + slotOffset",
+   "fields": [
+    {
+     "field": "state",
+     "slotOffset": 1,
+     "byteOffset": 30,
+     "type": "t_uint8",
+     "bytes": 1
+    },
+    {
+     "field": "tc",
+     "slotOffset": 2,
+     "byteOffset": 0,
+     "type": "t_uint64",
+     "bytes": 8
+    }
+   ],
+   "why": "validAt(keyId, h_a) = state ACTIVE \u2227 (tc = 0 \u2228 h_a < tc)",
+   "worked": {
+    "keys": {
+     "keyId": "0x8d268e17b2d8ac1985bf578dbf2ab81719176f2f179d206ccf8e21187527bde3"
+    },
+    "slot": "0x4b30374892f6507dacdeef368b2511408b8956daaf3742f5ba653fb8b67b105f",
+    "slots": [
+     "0x4b30374892f6507dacdeef368b2511408b8956daaf3742f5ba653fb8b67b105f",
+     "0x4b30374892f6507dacdeef368b2511408b8956daaf3742f5ba653fb8b67b1060",
+     "0x4b30374892f6507dacdeef368b2511408b8956daaf3742f5ba653fb8b67b1061"
+    ]
+   }
+  }
+ ],
+ "layouts": {
+  "ClaimRegistry": {
+   "storage": [
+    {
+     "astId": 17419,
+     "contract": "project/contracts/ClaimRegistry.sol:ClaimRegistry",
+     "label": "relayNonce",
+     "offset": 0,
+     "slot": "0",
+     "type": "t_mapping(t_address,t_uint256)"
+    },
+    {
+     "astId": 2297,
+     "contract": "project/contracts/ClaimRegistry.sol:ClaimRegistry",
+     "label": "gov",
+     "offset": 0,
+     "slot": "1",
+     "type": "t_contract(IGovernance)11026"
+    },
+    {
+     "astId": 2300,
+     "contract": "project/contracts/ClaimRegistry.sol:ClaimRegistry",
+     "label": "dev",
+     "offset": 0,
+     "slot": "2",
+     "type": "t_contract(IDeviceRegistry)10954"
+    },
+    {
+     "astId": 2303,
+     "contract": "project/contracts/ClaimRegistry.sol:ClaimRegistry",
+     "label": "anchor",
+     "offset": 0,
+     "slot": "3",
+     "type": "t_contract(ICaptureAnchor)10870"
+    },
+    {
+     "astId": 2305,
+     "contract": "project/contracts/ClaimRegistry.sol:ClaimRegistry",
+     "label": "adjudicator",
+     "offset": 0,
+     "slot": "4",
+     "type": "t_address"
+    },
+    {
+     "astId": 2307,
+     "contract": "project/contracts/ClaimRegistry.sol:ClaimRegistry",
+     "label": "staticRules",
+     "offset": 0,
+     "slot": "5",
+     "type": "t_address"
+    },
+    {
+     "astId": 2309,
+     "contract": "project/contracts/ClaimRegistry.sol:ClaimRegistry",
+     "label": "blockCourt",
+     "offset": 0,
+     "slot": "6",
+     "type": "t_address"
+    },
+    {
+     "astId": 2314,
+     "contract": "project/contracts/ClaimRegistry.sol:ClaimRegistry",
+     "label": "captures",
+     "offset": 0,
+     "slot": "7",
+     "type": "t_mapping(t_bytes32,t_struct(Capture)2195_storage)"
+    },
+    {
+     "astId": 2319,
+     "contract": "project/contracts/ClaimRegistry.sol:ClaimRegistry",
+     "label": "claims",
+     "offset": 0,
+     "slot": "8",
+     "type": "t_mapping(t_bytes32,t_struct(Claim)2219_storage)"
+    },
+    {
+     "astId": 2324,
+     "contract": "project/contracts/ClaimRegistry.sol:ClaimRegistry",
+     "label": "strikes",
+     "offset": 0,
+     "slot": "9",
+     "type": "t_mapping(t_bytes32,t_struct(Strike)2225_storage)"
+    },
+    {
+     "astId": 2331,
+     "contract": "project/contracts/ClaimRegistry.sol:ClaimRegistry",
+     "label": "delegations",
+     "offset": 0,
+     "slot": "10",
+     "type": "t_mapping(t_bytes32,t_mapping(t_address,t_struct(Delegation)2235_storage))"
+    },
+    {
+     "astId": 2338,
+     "contract": "project/contracts/ClaimRegistry.sol:ClaimRegistry",
+     "label": "exclusiveOf",
+     "offset": 0,
+     "slot": "11",
+     "type": "t_mapping(t_bytes32,t_mapping(t_uint8,t_struct(Exclusive)2243_storage))"
+    },
+    {
+     "astId": 2344,
+     "contract": "project/contracts/ClaimRegistry.sol:ClaimRegistry",
+     "label": "lastExclusiveGrant",
+     "offset": 0,
+     "slot": "12",
+     "type": "t_mapping(t_bytes32,t_mapping(t_uint8,t_uint64))"
+    },
+    {
+     "astId": 2350,
+     "contract": "project/contracts/ClaimRegistry.sol:ClaimRegistry",
+     "label": "activeOwn",
+     "offset": 0,
+     "slot": "13",
+     "type": "t_mapping(t_bytes32,t_mapping(t_uint8,t_uint32))"
+    },
+    {
+     "astId": 2354,
+     "contract": "project/contracts/ClaimRegistry.sol:ClaimRegistry",
+     "label": "blockedUntil",
+     "offset": 0,
+     "slot": "14",
+     "type": "t_mapping(t_bytes32,t_uint64)"
+    },
+    {
+     "astId": 2358,
+     "contract": "project/contracts/ClaimRegistry.sol:ClaimRegistry",
+     "label": "pendingTransfer",
+     "offset": 0,
+     "slot": "15",
+     "type": "t_mapping(t_bytes32,t_address)"
+    }
+   ],
+   "types": {
+    "t_address": {
+     "encoding": "inplace",
+     "label": "address",
+     "numberOfBytes": "20"
+    },
+    "t_bool": {
+     "encoding": "inplace",
+     "label": "bool",
+     "numberOfBytes": "1"
+    },
+    "t_bytes32": {
+     "encoding": "inplace",
+     "label": "bytes32",
+     "numberOfBytes": "32"
+    },
+    "t_contract(ICaptureAnchor)10870": {
+     "encoding": "inplace",
+     "label": "contract ICaptureAnchor",
+     "numberOfBytes": "20"
+    },
+    "t_contract(IDeviceRegistry)10954": {
+     "encoding": "inplace",
+     "label": "contract IDeviceRegistry",
+     "numberOfBytes": "20"
+    },
+    "t_contract(IGovernance)11026": {
+     "encoding": "inplace",
+     "label": "contract IGovernance",
+     "numberOfBytes": "20"
+    },
+    "t_mapping(t_address,t_struct(Delegation)2235_storage)": {
+     "encoding": "mapping",
+     "key": "t_address",
+     "label": "mapping(address => struct ClaimRegistry.Delegation)",
+     "numberOfBytes": "32",
+     "value": "t_struct(Delegation)2235_storage"
+    },
+    "t_mapping(t_address,t_uint256)": {
+     "encoding": "mapping",
+     "key": "t_address",
+     "label": "mapping(address => uint256)",
+     "numberOfBytes": "32",
+     "value": "t_uint256"
+    },
+    "t_mapping(t_bytes32,t_address)": {
+     "encoding": "mapping",
+     "key": "t_bytes32",
+     "label": "mapping(bytes32 => address)",
+     "numberOfBytes": "32",
+     "value": "t_address"
+    },
+    "t_mapping(t_bytes32,t_mapping(t_address,t_struct(Delegation)2235_storage))": {
+     "encoding": "mapping",
+     "key": "t_bytes32",
+     "label": "mapping(bytes32 => mapping(address => struct ClaimRegistry.Delegation))",
+     "numberOfBytes": "32",
+     "value": "t_mapping(t_address,t_struct(Delegation)2235_storage)"
+    },
+    "t_mapping(t_bytes32,t_mapping(t_uint8,t_struct(Exclusive)2243_storage))": {
+     "encoding": "mapping",
+     "key": "t_bytes32",
+     "label": "mapping(bytes32 => mapping(uint8 => struct ClaimRegistry.Exclusive))",
+     "numberOfBytes": "32",
+     "value": "t_mapping(t_uint8,t_struct(Exclusive)2243_storage)"
+    },
+    "t_mapping(t_bytes32,t_mapping(t_uint8,t_uint32))": {
+     "encoding": "mapping",
+     "key": "t_bytes32",
+     "label": "mapping(bytes32 => mapping(uint8 => uint32))",
+     "numberOfBytes": "32",
+     "value": "t_mapping(t_uint8,t_uint32)"
+    },
+    "t_mapping(t_bytes32,t_mapping(t_uint8,t_uint64))": {
+     "encoding": "mapping",
+     "key": "t_bytes32",
+     "label": "mapping(bytes32 => mapping(uint8 => uint64))",
+     "numberOfBytes": "32",
+     "value": "t_mapping(t_uint8,t_uint64)"
+    },
+    "t_mapping(t_bytes32,t_struct(Capture)2195_storage)": {
+     "encoding": "mapping",
+     "key": "t_bytes32",
+     "label": "mapping(bytes32 => struct ClaimRegistry.Capture)",
+     "numberOfBytes": "32",
+     "value": "t_struct(Capture)2195_storage"
+    },
+    "t_mapping(t_bytes32,t_struct(Claim)2219_storage)": {
+     "encoding": "mapping",
+     "key": "t_bytes32",
+     "label": "mapping(bytes32 => struct ClaimRegistry.Claim)",
+     "numberOfBytes": "32",
+     "value": "t_struct(Claim)2219_storage"
+    },
+    "t_mapping(t_bytes32,t_struct(Strike)2225_storage)": {
+     "encoding": "mapping",
+     "key": "t_bytes32",
+     "label": "mapping(bytes32 => struct ClaimRegistry.Strike)",
+     "numberOfBytes": "32",
+     "value": "t_struct(Strike)2225_storage"
+    },
+    "t_mapping(t_bytes32,t_uint64)": {
+     "encoding": "mapping",
+     "key": "t_bytes32",
+     "label": "mapping(bytes32 => uint64)",
+     "numberOfBytes": "32",
+     "value": "t_uint64"
+    },
+    "t_mapping(t_uint8,t_struct(Exclusive)2243_storage)": {
+     "encoding": "mapping",
+     "key": "t_uint8",
+     "label": "mapping(uint8 => struct ClaimRegistry.Exclusive)",
+     "numberOfBytes": "32",
+     "value": "t_struct(Exclusive)2243_storage"
+    },
+    "t_mapping(t_uint8,t_uint32)": {
+     "encoding": "mapping",
+     "key": "t_uint8",
+     "label": "mapping(uint8 => uint32)",
+     "numberOfBytes": "32",
+     "value": "t_uint32"
+    },
+    "t_mapping(t_uint8,t_uint64)": {
+     "encoding": "mapping",
+     "key": "t_uint8",
+     "label": "mapping(uint8 => uint64)",
+     "numberOfBytes": "32",
+     "value": "t_uint64"
+    },
+    "t_struct(Capture)2195_storage": {
+     "encoding": "inplace",
+     "label": "struct ClaimRegistry.Capture",
+     "members": [
+      {
+       "astId": 2180,
+       "contract": "project/contracts/ClaimRegistry.sol:ClaimRegistry",
+       "label": "owner",
+       "offset": 0,
+       "slot": "0",
+       "type": "t_address"
+      },
+      {
+       "astId": 2182,
+       "contract": "project/contracts/ClaimRegistry.sol:ClaimRegistry",
+       "label": "registeredAt",
+       "offset": 20,
+       "slot": "0",
+       "type": "t_uint32"
+      },
+      {
+       "astId": 2184,
+       "contract": "project/contracts/ClaimRegistry.sol:ClaimRegistry",
+       "label": "batchId",
+       "offset": 24,
+       "slot": "0",
+       "type": "t_uint32"
+      },
+      {
+       "astId": 2186,
+       "contract": "project/contracts/ClaimRegistry.sol:ClaimRegistry",
+       "label": "timeUnverified",
+       "offset": 28,
+       "slot": "0",
+       "type": "t_bool"
+      },
+      {
+       "astId": 2188,
+       "contract": "project/contracts/ClaimRegistry.sol:ClaimRegistry",
+       "label": "keyId",
+       "offset": 0,
+       "slot": "1",
+       "type": "t_bytes32"
+      },
+      {
+       "astId": 2190,
+       "contract": "project/contracts/ClaimRegistry.sol:ClaimRegistry",
+       "label": "epoch",
+       "offset": 0,
+       "slot": "2",
+       "type": "t_uint32"
+      },
+      {
+       "astId": 2192,
+       "contract": "project/contracts/ClaimRegistry.sol:ClaimRegistry",
+       "label": "lastTransfer",
+       "offset": 4,
+       "slot": "2",
+       "type": "t_uint32"
+      },
+      {
+       "astId": 2194,
+       "contract": "project/contracts/ClaimRegistry.sol:ClaimRegistry",
+       "label": "licCount",
+       "offset": 8,
+       "slot": "2",
+       "type": "t_uint32"
+      }
+     ],
+     "numberOfBytes": "96"
+    },
+    "t_struct(Claim)2219_storage": {
+     "encoding": "inplace",
+     "label": "struct ClaimRegistry.Claim",
+     "members": [
+      {
+       "astId": 2198,
+       "contract": "project/contracts/ClaimRegistry.sol:ClaimRegistry",
+       "label": "claimant",
+       "offset": 0,
+       "slot": "0",
+       "type": "t_address"
+      },
+      {
+       "astId": 2200,
+       "contract": "project/contracts/ClaimRegistry.sol:ClaimRegistry",
+       "label": "height",
+       "offset": 20,
+       "slot": "0",
+       "type": "t_uint64"
+      },
+      {
+       "astId": 2202,
+       "contract": "project/contracts/ClaimRegistry.sol:ClaimRegistry",
+       "label": "status",
+       "offset": 28,
+       "slot": "0",
+       "type": "t_uint8"
+      },
+      {
+       "astId": 2204,
+       "contract": "project/contracts/ClaimRegistry.sol:ClaimRegistry",
+       "label": "tier",
+       "offset": 29,
+       "slot": "0",
+       "type": "t_uint8"
+      },
+      {
+       "astId": 2206,
+       "contract": "project/contracts/ClaimRegistry.sol:ClaimRegistry",
+       "label": "marketplace",
+       "offset": 30,
+       "slot": "0",
+       "type": "t_uint8"
+      },
+      {
+       "astId": 2208,
+       "contract": "project/contracts/ClaimRegistry.sol:ClaimRegistry",
+       "label": "kind",
+       "offset": 31,
+       "slot": "0",
+       "type": "t_uint8"
+      },
+      {
+       "astId": 2210,
+       "contract": "project/contracts/ClaimRegistry.sol:ClaimRegistry",
+       "label": "nf",
+       "offset": 0,
+       "slot": "1",
+       "type": "t_bytes32"
+      },
+      {
+       "astId": 2212,
+       "contract": "project/contracts/ClaimRegistry.sol:ClaimRegistry",
+       "label": "id",
+       "offset": 0,
+       "slot": "2",
+       "type": "t_uint32"
+      },
+      {
+       "astId": 2214,
+       "contract": "project/contracts/ClaimRegistry.sol:ClaimRegistry",
+       "label": "courtFailed",
+       "offset": 4,
+       "slot": "2",
+       "type": "t_bool"
+      },
+      {
+       "astId": 2216,
+       "contract": "project/contracts/ClaimRegistry.sol:ClaimRegistry",
+       "label": "quorumFailed",
+       "offset": 5,
+       "slot": "2",
+       "type": "t_bool"
+      },
+      {
+       "astId": 2218,
+       "contract": "project/contracts/ClaimRegistry.sol:ClaimRegistry",
+       "label": "cleared",
+       "offset": 6,
+       "slot": "2",
+       "type": "t_bool"
+      }
+     ],
+     "numberOfBytes": "96"
+    },
+    "t_struct(Delegation)2235_storage": {
+     "encoding": "inplace",
+     "label": "struct ClaimRegistry.Delegation",
+     "members": [
+      {
+       "astId": 2228,
+       "contract": "project/contracts/ClaimRegistry.sol:ClaimRegistry",
+       "label": "epoch",
+       "offset": 0,
+       "slot": "0",
+       "type": "t_uint32"
+      },
+      {
+       "astId": 2230,
+       "contract": "project/contracts/ClaimRegistry.sol:ClaimRegistry",
+       "label": "scope",
+       "offset": 4,
+       "slot": "0",
+       "type": "t_uint64"
+      },
+      {
+       "astId": 2232,
+       "contract": "project/contracts/ClaimRegistry.sol:ClaimRegistry",
+       "label": "expiry",
+       "offset": 12,
+       "slot": "0",
+       "type": "t_uint64"
+      },
+      {
+       "astId": 2234,
+       "contract": "project/contracts/ClaimRegistry.sol:ClaimRegistry",
+       "label": "revoked",
+       "offset": 20,
+       "slot": "0",
+       "type": "t_bool"
+      }
+     ],
+     "numberOfBytes": "32"
+    },
+    "t_struct(Exclusive)2243_storage": {
+     "encoding": "inplace",
+     "label": "struct ClaimRegistry.Exclusive",
+     "members": [
+      {
+       "astId": 2238,
+       "contract": "project/contracts/ClaimRegistry.sol:ClaimRegistry",
+       "label": "licensee",
+       "offset": 0,
+       "slot": "0",
+       "type": "t_address"
+      },
+      {
+       "astId": 2240,
+       "contract": "project/contracts/ClaimRegistry.sol:ClaimRegistry",
+       "label": "licId",
+       "offset": 20,
+       "slot": "0",
+       "type": "t_uint32"
+      },
+      {
+       "astId": 2242,
+       "contract": "project/contracts/ClaimRegistry.sol:ClaimRegistry",
+       "label": "expiry",
+       "offset": 24,
+       "slot": "0",
+       "type": "t_uint64"
+      }
+     ],
+     "numberOfBytes": "32"
+    },
+    "t_struct(Strike)2225_storage": {
+     "encoding": "inplace",
+     "label": "struct ClaimRegistry.Strike",
+     "members": [
+      {
+       "astId": 2222,
+       "contract": "project/contracts/ClaimRegistry.sol:ClaimRegistry",
+       "label": "courtStruck",
+       "offset": 0,
+       "slot": "0",
+       "type": "t_bool"
+      },
+      {
+       "astId": 2224,
+       "contract": "project/contracts/ClaimRegistry.sol:ClaimRegistry",
+       "label": "quorumStrikes",
+       "offset": 1,
+       "slot": "0",
+       "type": "t_uint32"
+      }
+     ],
+     "numberOfBytes": "32"
+    },
+    "t_uint256": {
+     "encoding": "inplace",
+     "label": "uint256",
+     "numberOfBytes": "32"
+    },
+    "t_uint32": {
+     "encoding": "inplace",
+     "label": "uint32",
+     "numberOfBytes": "4"
+    },
+    "t_uint64": {
+     "encoding": "inplace",
+     "label": "uint64",
+     "numberOfBytes": "8"
+    },
+    "t_uint8": {
+     "encoding": "inplace",
+     "label": "uint8",
+     "numberOfBytes": "1"
+    }
+   }
+  },
+  "CaptureAnchor": {
+   "storage": [
+    {
+     "astId": 1874,
+     "contract": "project/contracts/CaptureAnchor.sol:CaptureAnchor",
+     "label": "_batches",
+     "offset": 0,
+     "slot": "0",
+     "type": "t_array(t_struct(Batch)1867_storage)dyn_storage"
+    }
+   ],
+   "types": {
+    "t_array(t_struct(Batch)1867_storage)dyn_storage": {
+     "base": "t_struct(Batch)1867_storage",
+     "encoding": "dynamic_array",
+     "label": "struct CaptureAnchor.Batch[]",
+     "numberOfBytes": "32"
+    },
+    "t_bytes32": {
+     "encoding": "inplace",
+     "label": "bytes32",
+     "numberOfBytes": "32"
+    },
+    "t_struct(Batch)1867_storage": {
+     "encoding": "inplace",
+     "label": "struct CaptureAnchor.Batch",
+     "members": [
+      {
+       "astId": 1858,
+       "contract": "project/contracts/CaptureAnchor.sol:CaptureAnchor",
+       "label": "root",
+       "offset": 0,
+       "slot": "0",
+       "type": "t_bytes32"
+      },
+      {
+       "astId": 1860,
+       "contract": "project/contracts/CaptureAnchor.sol:CaptureAnchor",
+       "label": "beacon",
+       "offset": 0,
+       "slot": "1",
+       "type": "t_bytes32"
+      },
+      {
+       "astId": 1862,
+       "contract": "project/contracts/CaptureAnchor.sol:CaptureAnchor",
+       "label": "beaconHeight",
+       "offset": 0,
+       "slot": "2",
+       "type": "t_uint64"
+      },
+      {
+       "astId": 1864,
+       "contract": "project/contracts/CaptureAnchor.sol:CaptureAnchor",
+       "label": "anchorHeight",
+       "offset": 8,
+       "slot": "2",
+       "type": "t_uint64"
+      },
+      {
+       "astId": 1866,
+       "contract": "project/contracts/CaptureAnchor.sol:CaptureAnchor",
+       "label": "count",
+       "offset": 16,
+       "slot": "2",
+       "type": "t_uint32"
+      }
+     ],
+     "numberOfBytes": "96"
+    },
+    "t_uint32": {
+     "encoding": "inplace",
+     "label": "uint32",
+     "numberOfBytes": "4"
+    },
+    "t_uint64": {
+     "encoding": "inplace",
+     "label": "uint64",
+     "numberOfBytes": "8"
+    }
+   }
+  },
+  "DeviceRegistry": {
+   "storage": [
+    {
+     "astId": 17419,
+     "contract": "project/contracts/DeviceRegistry.sol:DeviceRegistry",
+     "label": "relayNonce",
+     "offset": 0,
+     "slot": "0",
+     "type": "t_mapping(t_address,t_uint256)"
+    },
+    {
+     "astId": 4685,
+     "contract": "project/contracts/DeviceRegistry.sol:DeviceRegistry",
+     "label": "gov",
+     "offset": 0,
+     "slot": "1",
+     "type": "t_contract(IGovernance)11026"
+    },
+    {
+     "astId": 4688,
+     "contract": "project/contracts/DeviceRegistry.sol:DeviceRegistry",
+     "label": "anchor",
+     "offset": 0,
+     "slot": "2",
+     "type": "t_contract(ICaptureAnchor)10870"
+    },
+    {
+     "astId": 4693,
+     "contract": "project/contracts/DeviceRegistry.sol:DeviceRegistry",
+     "label": "devices",
+     "offset": 0,
+     "slot": "3",
+     "type": "t_mapping(t_bytes32,t_struct(Device)4660_storage)"
+    },
+    {
+     "astId": 4697,
+     "contract": "project/contracts/DeviceRegistry.sol:DeviceRegistry",
+     "label": "enrolledPk",
+     "offset": 0,
+     "slot": "4",
+     "type": "t_mapping(t_bytes32,t_bytes32)"
+    },
+    {
+     "astId": 4702,
+     "contract": "project/contracts/DeviceRegistry.sol:DeviceRegistry",
+     "label": "revocationWindow",
+     "offset": 0,
+     "slot": "5",
+     "type": "t_mapping(t_bytes32,t_struct(RevWindow)4672_storage)"
+    },
+    {
+     "astId": 4710,
+     "contract": "project/contracts/DeviceRegistry.sol:DeviceRegistry",
+     "label": "revocationVoted",
+     "offset": 0,
+     "slot": "6",
+     "type": "t_mapping(t_bytes32,t_mapping(t_uint32,t_mapping(t_address,t_bool)))"
+    },
+    {
+     "astId": 4718,
+     "contract": "project/contracts/DeviceRegistry.sol:DeviceRegistry",
+     "label": "revokeCount",
+     "offset": 0,
+     "slot": "7",
+     "type": "t_mapping(t_bytes32,t_mapping(t_uint32,t_mapping(t_bytes32,t_uint16)))"
+    }
+   ],
+   "types": {
+    "t_address": {
+     "encoding": "inplace",
+     "label": "address",
+     "numberOfBytes": "20"
+    },
+    "t_bool": {
+     "encoding": "inplace",
+     "label": "bool",
+     "numberOfBytes": "1"
+    },
+    "t_bytes32": {
+     "encoding": "inplace",
+     "label": "bytes32",
+     "numberOfBytes": "32"
+    },
+    "t_contract(ICaptureAnchor)10870": {
+     "encoding": "inplace",
+     "label": "contract ICaptureAnchor",
+     "numberOfBytes": "20"
+    },
+    "t_contract(IGovernance)11026": {
+     "encoding": "inplace",
+     "label": "contract IGovernance",
+     "numberOfBytes": "20"
+    },
+    "t_mapping(t_address,t_bool)": {
+     "encoding": "mapping",
+     "key": "t_address",
+     "label": "mapping(address => bool)",
+     "numberOfBytes": "32",
+     "value": "t_bool"
+    },
+    "t_mapping(t_address,t_uint256)": {
+     "encoding": "mapping",
+     "key": "t_address",
+     "label": "mapping(address => uint256)",
+     "numberOfBytes": "32",
+     "value": "t_uint256"
+    },
+    "t_mapping(t_bytes32,t_bytes32)": {
+     "encoding": "mapping",
+     "key": "t_bytes32",
+     "label": "mapping(bytes32 => bytes32)",
+     "numberOfBytes": "32",
+     "value": "t_bytes32"
+    },
+    "t_mapping(t_bytes32,t_mapping(t_uint32,t_mapping(t_address,t_bool)))": {
+     "encoding": "mapping",
+     "key": "t_bytes32",
+     "label": "mapping(bytes32 => mapping(uint32 => mapping(address => bool)))",
+     "numberOfBytes": "32",
+     "value": "t_mapping(t_uint32,t_mapping(t_address,t_bool))"
+    },
+    "t_mapping(t_bytes32,t_mapping(t_uint32,t_mapping(t_bytes32,t_uint16)))": {
+     "encoding": "mapping",
+     "key": "t_bytes32",
+     "label": "mapping(bytes32 => mapping(uint32 => mapping(bytes32 => uint16)))",
+     "numberOfBytes": "32",
+     "value": "t_mapping(t_uint32,t_mapping(t_bytes32,t_uint16))"
+    },
+    "t_mapping(t_bytes32,t_struct(Device)4660_storage)": {
+     "encoding": "mapping",
+     "key": "t_bytes32",
+     "label": "mapping(bytes32 => struct DeviceRegistry.Device)",
+     "numberOfBytes": "32",
+     "value": "t_struct(Device)4660_storage"
+    },
+    "t_mapping(t_bytes32,t_struct(RevWindow)4672_storage)": {
+     "encoding": "mapping",
+     "key": "t_bytes32",
+     "label": "mapping(bytes32 => struct DeviceRegistry.RevWindow)",
+     "numberOfBytes": "32",
+     "value": "t_struct(RevWindow)4672_storage"
+    },
+    "t_mapping(t_bytes32,t_uint16)": {
+     "encoding": "mapping",
+     "key": "t_bytes32",
+     "label": "mapping(bytes32 => uint16)",
+     "numberOfBytes": "32",
+     "value": "t_uint16"
+    },
+    "t_mapping(t_uint32,t_mapping(t_address,t_bool))": {
+     "encoding": "mapping",
+     "key": "t_uint32",
+     "label": "mapping(uint32 => mapping(address => bool))",
+     "numberOfBytes": "32",
+     "value": "t_mapping(t_address,t_bool)"
+    },
+    "t_mapping(t_uint32,t_mapping(t_bytes32,t_uint16))": {
+     "encoding": "mapping",
+     "key": "t_uint32",
+     "label": "mapping(uint32 => mapping(bytes32 => uint16))",
+     "numberOfBytes": "32",
+     "value": "t_mapping(t_bytes32,t_uint16)"
+    },
+    "t_struct(Device)4660_storage": {
+     "encoding": "inplace",
+     "label": "struct DeviceRegistry.Device",
+     "members": [
+      {
+       "astId": 4649,
+       "contract": "project/contracts/DeviceRegistry.sol:DeviceRegistry",
+       "label": "pkHash",
+       "offset": 0,
+       "slot": "0",
+       "type": "t_bytes32"
+      },
+      {
+       "astId": 4651,
+       "contract": "project/contracts/DeviceRegistry.sol:DeviceRegistry",
+       "label": "holder",
+       "offset": 0,
+       "slot": "1",
+       "type": "t_address"
+      },
+      {
+       "astId": 4653,
+       "contract": "project/contracts/DeviceRegistry.sol:DeviceRegistry",
+       "label": "enrolledAt",
+       "offset": 20,
+       "slot": "1",
+       "type": "t_uint64"
+      },
+      {
+       "astId": 4655,
+       "contract": "project/contracts/DeviceRegistry.sol:DeviceRegistry",
+       "label": "rateN",
+       "offset": 28,
+       "slot": "1",
+       "type": "t_uint16"
+      },
+      {
+       "astId": 4657,
+       "contract": "project/contracts/DeviceRegistry.sol:DeviceRegistry",
+       "label": "state",
+       "offset": 30,
+       "slot": "1",
+       "type": "t_uint8"
+      },
+      {
+       "astId": 4659,
+       "contract": "project/contracts/DeviceRegistry.sol:DeviceRegistry",
+       "label": "tc",
+       "offset": 0,
+       "slot": "2",
+       "type": "t_uint64"
+      }
+     ],
+     "numberOfBytes": "96"
+    },
+    "t_struct(RevWindow)4672_storage": {
+     "encoding": "inplace",
+     "label": "struct DeviceRegistry.RevWindow",
+     "members": [
+      {
+       "astId": 4663,
+       "contract": "project/contracts/DeviceRegistry.sol:DeviceRegistry",
+       "label": "openedAt",
+       "offset": 0,
+       "slot": "0",
+       "type": "t_uint64"
+      },
+      {
+       "astId": 4665,
+       "contract": "project/contracts/DeviceRegistry.sol:DeviceRegistry",
+       "label": "round",
+       "offset": 8,
+       "slot": "0",
+       "type": "t_uint32"
+      },
+      {
+       "astId": 4667,
+       "contract": "project/contracts/DeviceRegistry.sol:DeviceRegistry",
+       "label": "keep",
+       "offset": 12,
+       "slot": "0",
+       "type": "t_uint16"
+      },
+      {
+       "astId": 4669,
+       "contract": "project/contracts/DeviceRegistry.sol:DeviceRegistry",
+       "label": "maxRevoke",
+       "offset": 14,
+       "slot": "0",
+       "type": "t_uint16"
+      },
+      {
+       "astId": 4671,
+       "contract": "project/contracts/DeviceRegistry.sol:DeviceRegistry",
+       "label": "finalised",
+       "offset": 16,
+       "slot": "0",
+       "type": "t_bool"
+      }
+     ],
+     "numberOfBytes": "32"
+    },
+    "t_uint16": {
+     "encoding": "inplace",
+     "label": "uint16",
+     "numberOfBytes": "2"
+    },
+    "t_uint256": {
+     "encoding": "inplace",
+     "label": "uint256",
+     "numberOfBytes": "32"
+    },
+    "t_uint32": {
+     "encoding": "inplace",
+     "label": "uint32",
+     "numberOfBytes": "4"
+    },
+    "t_uint64": {
+     "encoding": "inplace",
+     "label": "uint64",
+     "numberOfBytes": "8"
+    },
+    "t_uint8": {
+     "encoding": "inplace",
+     "label": "uint8",
+     "numberOfBytes": "1"
+    }
+   }
+  }
+ }
+}
