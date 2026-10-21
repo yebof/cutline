@@ -28,6 +28,7 @@ How it works:
 | `abi/` | Contract ABI export and storage layout, read by `cutline.ledger`. |
 | `env/ENV_PINS.json` | SHA-256 pins of the libjpeg builds loaded at run time. |
 | `scripts/fetch_models.py` | Downloads the pinned ONNX segmenters. |
+| `reproducibility/` | Reproducibility report of the evaluation (PDF and LaTeX source); see its [README](reproducibility/README.md). |
 
 What each part of `cutline/` does:
 

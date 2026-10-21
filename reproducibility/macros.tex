@@ -1,0 +1,67 @@
+\newcommand{\sys}{\textsc{Cutline}}
+% \cutid{...}: every in-text identifier (levels G0-G4, evidence tiers X0/X1/XP/T, assumptions AS1-AS10, threats T1-T7,
+% residuals RF0-RF5, workflows WF1-WF3, oracles and algorithms). Upright sans (TeX Gyre Heros, the Helvetica clone that
+% matches the Arial-metric figure text), never small caps, never hyphenated.
+\providecommand{\cutid}[1]{\mbox{\sffamily\upshape #1}}
+\newcommand{\G}[1]{\cutid{G#1}}
+% Evidence tiers. They were called E0/E1/EP in the code and the registration files; the paper calls them X0/X1/XP so
+% that they cannot be confused with the experiment identifiers E1-E21.
+\newcommand{\Ezero}{\cutid{X0}}
+\newcommand{\Eone}{\cutid{X1}}
+\newcommand{\EP}{\cutid{XP}}
+\newcommand{\tierX}{tier~\cutid{X}}
+\newcommand{\tierXa}{tier-\cutid{X}}
+\newcommand{\tierT}{tier~\cutid{T}}
+\newcommand{\tierTa}{tier-\cutid{T}}
+\newcommand{\TierT}{Tier~\cutid{T}}
+\newcommand{\RY}{R_{Y}}
+\newcommand{\Mcert}{M_{\mathrm{cert}}}
+\newcommand{\Sil}{\mathit{Sil}}
+\newcommand{\Qpol}{Q_{\mathrm{pol}}}
+\newcommand{\Qhop}{Q_{\mathrm{hop}}}
+\newcommand{\Lchain}{\Lambda_{\mathrm{chain}}}
+\newcommand{\Einf}{E_{\infty}}
+\newcommand{\Linf}{\Lambda_{\infty}}
+\newcommand{\Dstar}{\mathrm{Dec}^{*}}
+\newcommand{\Cadj}{C_{\mathrm{adj}}}
+\newcommand{\Uadj}{U}
+\newcommand{\tauU}{\tau_{U}}
+\newcommand{\amax}{a_{\max}}
+\newcommand{\recv}{\mathit{rec}}
+\newcommand{\sigdev}{\sigma_{\mathrm{dev}}}
+\newcommand{\sighold}{\sigma_{\mathrm{hold}}}
+\newcommand{\sigclaim}{\sigma_{\mathrm{claim}}}
+\newcommand{\Wreg}{W_{\mathrm{reg}}}
+\newcommand{\Wvote}{W_{\mathrm{vote}}}
+\newcommand{\game}{\mathsf{G}^{\mathrm{CBCF}}}
+\newcommand{\Adv}{\mathrm{Adv}}
+\newcommand{\islow}{\texttt{islow}}
+\newcommand{\ContainerOK}{\cutid{ContainerOK}}
+\newcommand{\Compile}{\cutid{Compile}}
+\newcommand{\Evaluate}{\cutid{Evaluate}}
+\newcommand{\VerifyE}{\cutid{VerifyE}}
+\newcommand{\VerifyHop}{\cutid{VerifyHop}}
+\newcommand{\Corrupt}{\cutid{Corrupt}}
+\newcommand{\SignOracle}{\cutid{SignOracle}}
+\newcommand{\HolderSign}{\cutid{HolderSign}}
+\newcommand{\levelcap}{\mathit{levelCap}}
+\newcommand{\RF}[1]{\cutid{RF#1}}%
+\newcommand{\AS}[1]{\cutid{AS#1}}
+\newcommand{\WF}[1]{\cutid{WF#1}}
+\newcommand{\Th}[1]{\cutid{T#1}}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+\newtheorem{proposition}{Proposition}
+\newtheorem{corollary}{Corollary}
+\newtheorem{definition}{Definition}
+\newtheorem{remark}{Remark}
+\newcommand{\Phat}{\hat\Phi}
+% Author block shared by main.tex and supplement.tex (edit here so both update together).
+% Authors (in order). Add further authors with \and / \IEEEauthorrefmark as they are confirmed.
+\providecommand{\cutlineauthors}{Yahui~Lu\,\orcidlink{0000-0003-3040-8464} and Yebo~Feng\,\orcidlink{0000-0002-7235-2377}%
+\thanks{(Corresponding author: Yebo Feng.)}%
+\thanks{Y.~Lu is with Zhejiang University of Science and Technology, Hangzhou, China
+(e-mail: 121010@zust.edu.cn).}%
+\thanks{Y.~Feng is with Nanyang Technological University, Singapore (e-mail: yebo.feng@ntu.edu.sg).}}
+% Plain-text author list for the PDF metadata of both documents (no IEEEtran author-block macros here).
+\providecommand{\cutlinepdfauthors}{Yahui Lu, Yebo Feng}

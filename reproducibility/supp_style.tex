@@ -1,0 +1,103 @@
+% paper/supp_style.tex - shared layout of the CUTLINE Supplementary Material (supplement.tex) and the online
+% Reproducibility Report (reproducibility_report.tex). Figures follow paper/figs/src/cutline_style.py (sans, one accent
+% colour for CUTLINE, greys for baselines); this file gives the text the same accent and a quiet sans heading style.
+\usepackage[letterpaper,margin=0.85in,headheight=14pt,headsep=14pt,footskip=26pt]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{cite}
+\usepackage{amsmath,amssymb}
+\usepackage{amsthm}
+\usepackage{newtxtext,newtxmath}
+\setsansfont{texgyreheros-regular.otf}[BoldFont=texgyreheros-bold.otf,ItalicFont=texgyreheros-italic.otf,
+  BoldItalicFont=texgyreheros-bolditalic.otf,Scale=MatchLowercase]
+\usepackage{xeCJK}\setCJKmainfont{FandolSong-Regular.otf}[BoldFont=FandolSong-Bold.otf]
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{tabularx}
+\usepackage{multirow}
+\usepackage{longtable}
+\usepackage{pdflscape}
+\usepackage{xcolor}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta,positioning,fit,backgrounds,calc}
+\usepackage{xurl}
+\usepackage{microtype}
+\usepackage[shortlabels]{enumitem}
+\usepackage{titlesec}
+\usepackage[titles]{tocloft}
+\usepackage{fancyhdr}
+\usepackage{caption}
+\usepackage{xr-hyper}
+\usepackage[colorlinks=true,linkcolor=cutlink,citecolor=cutlink,urlcolor=cutlink,bookmarksnumbered=true,
+  bookmarksopen=true,bookmarksopenlevel=1,pdfdisplaydoctitle=true]{hyperref}
+\usepackage{bookmark}
+
+% ---- colours (cutline_style.C) ----
+\definecolor{cutaccent}{HTML}{1F5FAD}
+\definecolor{cutaccentlight}{HTML}{C9DAF1}
+\definecolor{cutlink}{HTML}{1B4F8F}
+\definecolor{cutgrey}{HTML}{4D4D4D}
+\definecolor{cutgreylight}{HTML}{ECECEC}
+\definecolor{cutgen}{HTML}{E69F00}
+\definecolor{cutgenlight}{HTML}{FBE3B0}
+\definecolor{cutfail}{HTML}{D1495B}
+\definecolor{cutfaillight}{HTML}{F6CDD2}
+\definecolor{cutledger}{HTML}{7A5195}
+\definecolor{cutledgerlight}{HTML}{E6DCEF}
+
+% ---- headings: sans, accent rule under sections ----
+\titleformat{\part}[block]{\sffamily\bfseries\Large\color{cutaccent}}{Part~\thepart}{0.6em}{}[\vspace{2pt}{\color{cutaccent}\titlerule[0.8pt]}]
+\titlespacing*{\part}{0pt}{16pt}{10pt}
+\titleformat{\section}{\sffamily\bfseries\large}{\thesection}{0.7em}{}
+\titlespacing*{\section}{0pt}{14pt plus 3pt minus 2pt}{6pt plus 2pt}
+\titleformat{\subsection}{\sffamily\bfseries\normalsize}{\thesubsection}{0.7em}{}
+\titlespacing*{\subsection}{0pt}{10pt plus 2pt minus 2pt}{4pt plus 1pt}
+\titleformat{\paragraph}[runin]{\sffamily\bfseries\small}{}{0pt}{}[.]
+\titlespacing*{\paragraph}{0pt}{6pt plus 2pt}{0.6em}
+\renewcommand{\thepart}{\Alph{part}}
+
+% ---- running head ----
+\newcommand{\runninghead}{}
+\pagestyle{fancy}\fancyhf{}
+\renewcommand{\headrulewidth}{0.4pt}\renewcommand{\headrule}{{\color{cutgreylight}\hrule height\headrulewidth}}
+\fancyhead[L]{\sffamily\footnotesize\color{cutgrey}\textsc{Cutline}\enspace\textperiodcentered\enspace\runninghead}
+\fancyhead[R]{\sffamily\footnotesize\color{cutgrey}\thepage}
+\fancypagestyle{plain}{\fancyhf{}\renewcommand{\headrulewidth}{0pt}\fancyfoot[C]{\sffamily\footnotesize\color{cutgrey}\thepage}}
+
+% ---- captions: tables above (IEEE), figures below; bold label, the first sentence of each caption is its title ----
+\DeclareCaptionLabelFormat{ieeetab}{\textsc{Table}~#2}
+\captionsetup{font=small,labelfont={bf},labelsep=period,justification=justified,singlelinecheck=true}
+\captionsetup[figure]{name=Fig.,skip=6pt}
+\captionsetup[table]{labelformat=ieeetab,position=top,skip=4pt}
+\newcommand{\tabnote}[1]{\par\smallskip{\footnotesize\raggedright#1\par}}
+
+% ---- tables ----
+\renewcommand{\arraystretch}{1.12}
+\setlength{\aboverulesep}{0.3ex}\setlength{\belowrulesep}{0.5ex}
+\newcolumntype{L}[1]{>{\raggedright\arraybackslash}p{#1}}
+\newcolumntype{Y}{>{\raggedright\arraybackslash}X}
+\newcommand{\tabsize}{\fontsize{8}{9.6}\selectfont}
+\newcommand{\tabsmall}{\fontsize{7.2}{8.6}\selectfont}
+
+% ---- theorems and proofs in the style of the manuscript (IEEEtran: italic "Name n (note):", upright body) ----
+\newtheoremstyle{ieee}{4pt plus 2pt}{4pt plus 2pt}{\upshape}{\parindent}{\itshape}{:}{0.5em}%
+  {\thmname{#1}\thmnumber{ #2}\thmnote{ (#3)}}
+\theoremstyle{ieee}
+\makeatletter
+\renewenvironment{proof}[1][\proofname]{\par\pushQED{\qed}\normalfont\topsep4pt plus 2pt\trivlist
+  \item[\hskip\labelsep\hskip\parindent\itshape#1:]\ignorespaces}{\popQED\endtrivlist\@endpefalse}
+\makeatother
+\renewcommand{\qedsymbol}{$\square$}
+
+% ---- typography ----
+\widowpenalty=10000\clubpenalty=10000\displaywidowpenalty=10000
+\setlist{itemsep=2pt,topsep=3pt,parsep=0pt,leftmargin=1.4em}
+\setcounter{tocdepth}{2}
+\setlength{\cftsecnumwidth}{2.6em}\setlength{\cftsubsecnumwidth}{3.3em}\setlength{\cftsubsecindent}{2.6em}
+\renewcommand{\cftpartfont}{\sffamily\bfseries\color{cutaccent}}\renewcommand{\cftpartpagefont}{\sffamily\bfseries\color{cutaccent}}
+\renewcommand{\cftsecfont}{\sffamily\bfseries}\renewcommand{\cftsecpagefont}{\sffamily\bfseries}
+\renewcommand{\cfttoctitlefont}{\sffamily\bfseries\large}\setlength{\cftbeforesecskip}{2pt}\setlength{\cftbeforepartskip}{8pt}
+\renewcommand{\cftpartpresnum}{Part~}\setlength{\cftpartnumwidth}{4.2em}
+\renewcommand{\floatpagefraction}{0.8}\renewcommand{\topfraction}{0.9}\renewcommand{\textfraction}{0.08}
+\setcounter{topnumber}{3}
+\providecommand{\mainrefx}[1]{\ref*{M-#1}}
