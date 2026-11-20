@@ -1,7 +1,7 @@
 # Reproducibility Report
 
 This folder holds the online Reproducibility Report of CUTLINE ("CUTLINE: Verifying Real Product Pixels in
-AI-Composited Listings", Yahui Lu, Yebo Feng, Ruichao Liang, Konglin Zhu, Yang Liu, Huijie Yang and Jian Shen): the compiled PDF and its LaTeX source. The report accompanies the
+AI-Composited Listings", Yahui Lu, Yebo Feng, Ruichao Liang, Huijie Yang, Yang Liu, Konglin Zhu and Jian Shen): the compiled PDF and its LaTeX source. The report accompanies the
 manuscript and its Supplementary Material. It holds every protocol detail, data table, figure and run note of the
 evaluation that the manuscript and the supplement summarise.
 
